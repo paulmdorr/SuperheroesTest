@@ -1,5 +1,6 @@
 {
   "plugins": [
-    "astroturf/plugin"
+    "astroturf/plugin",
+    "babel-plugin-transform-object-rest-spread"
   ]
 }
