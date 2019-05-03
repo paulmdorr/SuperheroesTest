@@ -1,3 +1,4 @@
 import SuperheroesList from './SuperheroesList'
+import Superhero from './Superhero'
 
-module.exports = { SuperheroesList }
+module.exports = { SuperheroesList, Superhero }

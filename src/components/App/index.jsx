@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { SuperheroesList } from '../Superheroes'
+import { SuperheroesList, Superhero } from '../Superheroes'
 
 function App(props) {
   return <Router>
@@ -11,8 +11,10 @@ function App(props) {
         <meta name="description" content="See all of your favourite heroes' stories here!" />
       </Helmet>
       <main>
+        <SuperheroesList />
         <Switch>
-          <Route path="/" component={SuperheroesList} />
+          <Route exact path="/" component={() => <div>index</div>} />
+          <Route path="/superhero/:id" component={Superhero} />
         </Switch>
       </main>
     </div>

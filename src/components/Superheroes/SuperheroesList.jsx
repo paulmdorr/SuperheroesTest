@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { fetchSuperheroes } from '../../actions'
 
 function SuperheroesList(props) {
   const { fetchSuperheroes, superheroes, isLoading, error } = props
+  const imageType = 'standard_medium'
 
   useEffect(() => {
-    if (superheroes.length === 0 && !isLoading) {
+    if (!isLoading && superheroes.length === 0 && !error) {
       fetchSuperheroes()
     }
   })
@@ -20,7 +22,20 @@ function SuperheroesList(props) {
   }
 
   console.log(superheroes)
-  return <div>Hello!</div>
+  return <ul>
+    {superheroes.map(elem => <li>
+      <Link to={`/superhero/${elem.id}`}>
+        <div>{elem.name}</div>
+        <div>
+          <img src={`${elem.thumbnail.path}/${imageType}.${elem.thumbnail.extension}`} />
+        </div>
+        <div>{elem.comics.available > 0 ? 'yes' : 'no'}</div>
+        <div>{elem.series.available > 0 ? 'yes' : 'no'}</div>
+        <div>{elem.events.available > 0 ? 'yes' : 'no'}</div>
+        <div>{elem.stories.available > 0 ? 'yes' : 'no'}</div>
+      </Link>
+    </li>)}
+  </ul>
 }
 
 const mapStateToProps = state => {
