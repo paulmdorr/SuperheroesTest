@@ -1,22 +1,22 @@
 import React, { useEffect } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
+import { SuperheroesList } from '../Superheroes'
 
-export default function(props) {
-  const { fetchSuperheroes, superheroes, isLoading, error } = props
-
-  useEffect(() => {
-    if (superheroes.length === 0 && !isLoading) {
-      fetchSuperheroes()
-    }
-  })
-
-  if (isLoading) {
-    return <div>Loading...</div>
-  }
-
-  if (error) {
-    return <div>ERROR!!!</div>
-  }
-
-  console.log(superheroes)
-  return <div>Hello!</div>
+function App(props) {
+  return <Router>
+    <div>
+      <Helmet>
+        <title>Superheroes App</title>
+        <meta name="description" content="See all of your favourite heroes' stories here!" />
+      </Helmet>
+      <main>
+        <Switch>
+          <Route path="/" component={SuperheroesList} />
+        </Switch>
+      </main>
+    </div>
+  </Router>
 }
+
+export default App

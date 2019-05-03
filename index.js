@@ -3,14 +3,14 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import AppWrapper from './src/containers/AppWrapper'
+import App from './src/components/App'
 import superheroesApp from './src/reducers'
 
 const store = createStore(superheroesApp, applyMiddleware(thunk))
 
 render(
   <Provider store={store}>
-    <AppWrapper />
+    <App />
   </Provider>,
   document.getElementById('app')
 )
