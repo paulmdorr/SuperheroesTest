@@ -2,13 +2,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
-import { SuperheroesList, Superhero } from '../Superheroes'
+import { SuperheroesList, SuperheroDetail } from '../Superheroes'
 import { css } from 'astroturf'
 import { getSuperhero } from '../../actions'
 
 const styles = css`
   .wrapper {
+    color: #212121;
     margin: 0 auto;
+    font-family: 'sans serif';
     height: 90vh;
     max-width: 1024px;
   }
@@ -22,18 +24,28 @@ const styles = css`
   }
 
   .list {
-    border: 1px solid black;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
     height: 90vh;
     grid-area: list;
-
-    ul {
-      height: 85vh;
-      overflow-y: scroll;
-    }
+    box-shadow: -5px 5px 10px 0px rgba(122, 127, 135, 0.55);
   }
 
   .detail {
     grid-area: detail;
+    box-shadow: 5px 5px 10px 0px rgba(122, 127, 135, 0.55);
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .placeholder {
+    font-size: 50px;
+    padding: 40vh 8vw;
+    text-align: center;
   }
 `
 
@@ -59,9 +71,11 @@ function App({ superhero, superheroes, getSuperhero }) {
         </section>
         <section className={styles.detail}>
           <Switch>
-            <Route exact path="/" component={() => <div>index</div>} />
+            <Route exact path="/" component={() => <div className={styles.placeholder}>
+              Please select a superhero
+            </div>} />
             <Route path="/superhero/:id" render={props =>
-              <Superhero loadSuperhero={loadSuperhero} {...props} />} />
+              <SuperheroDetail loadSuperhero={loadSuperhero} {...props} />} />
           </Switch>
         </section>
       </main>

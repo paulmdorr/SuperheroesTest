@@ -4,12 +4,37 @@ import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { fetchSuperheroes } from '../../actions'
 import { css } from 'astroturf'
+import Superhero from './Superhero'
 
 const styles = css`
   .pagination {
-    display: inline-block;
+    display: flex;
+    list-style-type: none;
+    margin: 10px 0 0;
     padding-left: 15px;
     padding-right: 15px;
+
+    li {
+      background: #d56062;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      color: #fafafa;
+      cursor: pointer;
+      font-size: 12px;
+      margin: 2px;
+
+      a {
+        display: block;
+        padding: 5px;
+      }
+    }
+  }
+
+  .superheroes {
+    list-style-type: none;
+    margin: 20px 0;
+    overflow-y: scroll;
+    padding: 0 20px;
   }
 `
 
@@ -38,32 +63,22 @@ function SuperheroesList(props) {
     return <div>ERROR!!!</div>
   }
 
-  return <div>
+  return <React.Fragment>
     <ReactPaginate
       pageCount={pages}
-      marginPagesDisplayed={2}
-      pageRangeDisplayed={3}
+      marginPagesDisplayed={1}
+      pageRangeDisplayed={2}
       onPageChange={handlePageClick}
       containerClassName={styles.pagination}
-      subContainerClassName={'pages pagination'}
       activeClassName={'active'}
       forcePage={currentPage}
     />
-    <ul>
-      {superheroes.map(elem => <li key={elem.id}>
-        <Link to={`/superhero/${elem.id}`} onClick={() => loadSuperhero(elem.id)}>
-          <div>{elem.name}</div>
-          <div>
-            <img src={`${elem.thumbnail.path}/${imageType}.${elem.thumbnail.extension}`} />
-          </div>
-          <div>{elem.comics.available > 0 ? 'yes' : 'no'}</div>
-          <div>{elem.series.available > 0 ? 'yes' : 'no'}</div>
-          <div>{elem.events.available > 0 ? 'yes' : 'no'}</div>
-          <div>{elem.stories.available > 0 ? 'yes' : 'no'}</div>
-        </Link>
-      </li>)}
+    <ul className={styles.superheroes}>
+      {superheroes.map(elem => <Superhero {...elem} key={elem.id}
+        loadSuperhero={loadSuperhero} page={currentPage}
+      />)}
     </ul>
-  </div>
+  </React.Fragment>
 }
 
 const mapStateToProps = ({ superheroesList }) => {
