@@ -19,10 +19,13 @@ export function fetchSuperheroesBegin() {
   }
 }
 
-export function fetchSuperheroesSuccess(data) {
+export function fetchSuperheroesSuccess(data, limit, currentPage) {
   return {
     type: FETCH_SUPERHEROES_SUCCESS,
-    data
+    superheroes: data.results,
+    pages: Math.ceil(data.total / limit),
+    limit,
+    currentPage
   }
 }
 
@@ -42,14 +45,17 @@ export function getSuperhero(id, superheroes) {
   }
 }
 
-export function fetchSuperheroes() {
+export function fetchSuperheroes(limit, page) {
+  const offset = limit * page
+  const pageFilter = `&limit=${limit}&offset=${offset})`
+
   return dispatch => {
     dispatch(fetchSuperheroesBegin())
-    return axios(`${baseUrl}${authQuery}`)
+    return axios(`${baseUrl}${authQuery}${pageFilter}`)
       .then(res => {
         const marvelRes = res.data
-        dispatch(fetchSuperheroesSuccess(marvelRes.data.results))
-        return marvelRes.data.results
+        dispatch(fetchSuperheroesSuccess(marvelRes.data, limit, page))
+        return marvelRes.data
       })
       .catch(error =>
         dispatch(fetchSuperheroesFailure(error))

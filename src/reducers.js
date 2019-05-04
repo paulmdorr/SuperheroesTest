@@ -7,6 +7,8 @@ import {
 } from './actions'
 
 const initialState = {
+  pages: 0,
+  limit: 20,
   currentSuperhero: null,
   superheroes: [],
   isLoading: false,
@@ -30,7 +32,10 @@ function superheroesList(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        superheroes: action.data
+        superheroes: action.superheroes,
+        limit: action.limit,
+        pages: action.pages,
+        currentPage: action.currentPage
       }
     default:
       return state

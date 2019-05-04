@@ -17,7 +17,7 @@ function Superhero(props) {
       <img src={`${superhero.thumbnail.path}/${imageType}.${superhero.thumbnail.extension}`} />
       <article>{superhero.description}</article>
       <ul>{superhero.urls.map(elem =>
-        <li>
+        <li key={elem.type}>
           <a href={elem.url} target="_blank">{elem.type}</a>
         </li>
       )}
