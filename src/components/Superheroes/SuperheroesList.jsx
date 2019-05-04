@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { fetchSuperheroes } from '../../actions'
 
 function SuperheroesList(props) {
-  const { fetchSuperheroes, superheroes, isLoading, error } = props
+  const { fetchSuperheroes, superheroes, isLoading, error, loadSuperhero } = props
   const imageType = 'standard_medium'
 
   useEffect(() => {
@@ -21,10 +21,9 @@ function SuperheroesList(props) {
     return <div>ERROR!!!</div>
   }
 
-  console.log(superheroes)
   return <ul>
-    {superheroes.map(elem => <li>
-      <Link to={`/superhero/${elem.id}`}>
+    {superheroes.map(elem => <li key={elem.id}>
+      <Link to={`/superhero/${elem.id}`} onClick={() => loadSuperhero(elem.id)}>
         <div>{elem.name}</div>
         <div>
           <img src={`${elem.thumbnail.path}/${imageType}.${elem.thumbnail.extension}`} />
@@ -38,11 +37,11 @@ function SuperheroesList(props) {
   </ul>
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ superheroesList }) => {
   return {
-    superheroes: state.superheroes,
-    isLoading: state.isLoading,
-    error: state.error
+    superheroes: superheroesList.superheroes,
+    isLoading: superheroesList.isLoading,
+    error: superheroesList.error
   }
 }
 

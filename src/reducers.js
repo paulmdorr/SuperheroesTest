@@ -1,7 +1,9 @@
+import { combineReducers } from 'redux'
 import {
   FETCH_SUPERHEROES_BEGIN,
   FETCH_SUPERHEROES_SUCCESS,
   FETCH_SUPERHEROES_FAILURE,
+  FETCH_SUPERHERO,
 } from './actions'
 
 const initialState = {
@@ -11,18 +13,12 @@ const initialState = {
   error: null
 }
 
-export default function superheroesApp(state = initialState, action) {
+function superheroesList(state = initialState, action) {
   switch (action.type) {
     case FETCH_SUPERHEROES_BEGIN:
       return {
         ...state,
         isLoading: true
-      }
-    case FETCH_SUPERHEROES_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        superheroes: action.data
       }
     case FETCH_SUPERHEROES_FAILURE:
       return {
@@ -30,7 +26,31 @@ export default function superheroesApp(state = initialState, action) {
         isLoading: false,
         error: action.error
       }
+    case FETCH_SUPERHEROES_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        superheroes: action.data
+      }
     default:
       return state
   }
 }
+
+function superhero(state = initialState, action) {
+  switch (action.type) {
+    case FETCH_SUPERHERO:
+      return {
+        ...state,
+        isLoading: false,
+        superhero: action.superhero
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({
+  superheroesList,
+  superhero
+})

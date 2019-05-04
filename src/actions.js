@@ -8,10 +8,7 @@ import axios from 'axios'
 export const FETCH_SUPERHEROES_BEGIN = 'FETCH_SUPERHEROES_BEGIN'
 export const FETCH_SUPERHEROES_SUCCESS = 'FETCH_SUPERHEROES_SUCCESS'
 export const FETCH_SUPERHEROES_FAILURE = 'FETCH_SUPERHEROES_FAILURE'
-export const FETCH_SUPERHERO_BEGIN = 'FETCH_SUPERHERO_BEGIN'
-export const FETCH_SUPERHERO_SUCCESS = 'FETCH_SUPERHERO_SUCCESS'
-export const FETCH_SUPERHERO_FAILURE = 'FETCH_SUPERHERO_FAILURE'
-
+export const FETCH_SUPERHERO = 'FETCH_SUPERHERO'
 /*
  * action creators
  */
@@ -36,6 +33,15 @@ export function fetchSuperheroesFailure(error) {
   }
 }
 
+export function getSuperhero(id, superheroes) {
+  const idAsInt = parseInt(id, 10)
+
+  return {
+    type: FETCH_SUPERHERO,
+    superhero: superheroes.find(elem => elem.id === idAsInt)
+  }
+}
+
 export function fetchSuperheroes() {
   return dispatch => {
     dispatch(fetchSuperheroesBegin())
@@ -48,12 +54,5 @@ export function fetchSuperheroes() {
       .catch(error =>
         dispatch(fetchSuperheroesFailure(error))
       )
-  }
-}
-
-export function showSuperhero(data) {
-  return {
-    type: FETCH_SUPERHERO_BEGIN,
-    data
   }
 }
