@@ -36,6 +36,20 @@ const styles = css`
     overflow-y: scroll;
     padding: 0 20px;
   }
+
+  .placeholder {
+    font-size: 30px;
+    padding: 40vh 0;
+    text-align: center;
+  }
+
+  .error {
+    background: #f4aeab;
+    color: #a3333d;
+    font-size: 30px;
+    padding: 39vh 1vw;
+    text-align: center;
+  }
 `
 
 function SuperheroesList(props) {
@@ -56,11 +70,12 @@ function SuperheroesList(props) {
   })
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div className={styles.placeholder}>Loading...</div>
   }
 
   if (error) {
-    return <div>ERROR!!!</div>
+    console.error(error)
+    return <div className={styles.error}>Unexpected Error, check the console for more info</div>
   }
 
   return <React.Fragment>
