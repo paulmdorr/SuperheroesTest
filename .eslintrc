@@ -41,7 +41,7 @@
     "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "no-cond-assign": 1,
-    "no-console": 0,
+    "no-console": 1,
     "no-constant-condition": 1,
     "no-comma-dangle": 0,
     "no-control-regex": 1,
