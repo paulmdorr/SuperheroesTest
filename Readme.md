@@ -3,8 +3,8 @@
 ## Installation
 
 ```bash
-git clone git@github.com:paulmdorr/MakingSenseTest.git
-cd MakingSenseTest
+git clone git@github.com:paulmdorr/MakingSenseSuperheroesTest.git
+cd MakingSenseSuperheroesTest
 yarn install
 ```
 
@@ -28,7 +28,7 @@ yarn build
 - Basic bundling with Parcel
 - CSS-in-JS using astroturf
 - Helmet to improve SEO (as an example, because this would work if I were using server-side rendering)
-- React Router for routes and dynamic urls for each superhero
+- React Router for routes and dynamic urls for each superhero (deep-linking)
 - Redux thunk to improve the loading/success/error experience
 - API config in a separate file (see [Link to Header](#improvements))
 
