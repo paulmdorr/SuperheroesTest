@@ -30,7 +30,7 @@ yarn build
 - Helmet to improve SEO (as an example, because this would work if I were using server-side rendering)
 - React Router for routes and dynamic urls for each superhero (deep-linking)
 - Redux thunk to improve the loading/success/error experience
-- API config in a separate file (see [Link to Header](#improvements))
+- API config in a separate file (see [Improvements](#improvements))
 
 ## Improvements
 
