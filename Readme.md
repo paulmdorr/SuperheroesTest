@@ -1,9 +1,9 @@
-# Making Sense Superheroes Test App
+# Superheroes Test App
 
 ## Installation
 
 ```bash
-git clone git@github.com:paulmdorr/MakingSenseSuperheroesTest.git
+git clone git@github.com:paulmdorr/SuperheroesTest.git
 cd SuperheroesTest
 yarn install
 ```
@@ -34,11 +34,10 @@ yarn build
 
 ## Improvements
 
-List of improvements that could be done if I had more time
+List of improvements that could be done
 
 - Add a backend for frontend in order to support:
   - Server-side rendering
   - The ability to configure the API keys from *env variables* and to generate the *API hash dynamically* (see comments in [APIConfig.js](src/config/APIConfig.js))
-- Add unit testing (you can take a look to how I write tests in [this repo](https://github.com/paulmdorr/BrandsAPI/tree/master/src/Repositories/tests))
 - Improve CSS style and responsiveness
 - Fix small issues in the code (e.g. the superheroes list loads twice if you reload the page with a superhero selected)
