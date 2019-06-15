@@ -4,7 +4,7 @@
 
 ```bash
 git clone git@github.com:paulmdorr/MakingSenseSuperheroesTest.git
-cd MakingSenseSuperheroesTest
+cd SuperheroesTest
 yarn install
 ```
 
