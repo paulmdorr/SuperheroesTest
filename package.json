@@ -9,7 +9,7 @@
   "author": "Pablo Martinez Dorr",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "express": "^4.16.4",
     "query-string": "^6.5.0",
     "react": "^16.8.6",
